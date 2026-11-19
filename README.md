@@ -2,6 +2,17 @@
 
 Full category breadcrumbs on the product page (Home / Category / Subcategory / Product), following the product's primary category when it has one — for visitors and for search engines.
 
+## How
+
+- Magento shows only *Home / Product* when a product page is opened directly (from search, a link or Google). This module always builds the full category path.
+- **Primary Category** (product attribute, Search Engine Optimization group): when set, the breadcrumbs follow the product's deepest category in that branch. Without it, the deepest category the product belongs to in the current store is used.
+- The breadcrumbs also go out as a schema.org `BreadcrumbList` (JSON-LD). When `Webcode_StructuredData` is enabled it prints the `BreadcrumbList` from the same crumbs, so the module leaves it out to avoid a duplicate.
+- The current product comes from `webcode/module-current-product`, not from the deprecated core registry.
+
+## Configuration
+
+None. Set **Primary Category** on the products whose breadcrumbs should follow a particular branch.
+
 ## Installation
 
 Webcode's free modules are installed from our own Composer repository — they are not published on Packagist.

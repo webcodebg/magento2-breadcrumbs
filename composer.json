@@ -1,6 +1,6 @@
 {
     "name": "webcode/module-breadcrumbs",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "Support 'full' Product Breadcrumbs with Primary Category",
     "type": "magento2-module",
     "require": {
