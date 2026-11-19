@@ -12,7 +12,6 @@ namespace Webcode\Breadcrumbs\ViewModel;
 use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Helper\Category;
-use Magento\Catalog\Helper\Data as CatalogHelper;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -20,6 +19,7 @@ use Magento\Framework\Module\Manager as ModuleManager;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Webcode\CurrentProduct\Model\Catalog\CurrentProduct;
 
 class ProductBreadcrumbCategory implements ArgumentInterface
 {
@@ -29,14 +29,14 @@ class ProductBreadcrumbCategory implements ArgumentInterface
     private array $storeCategories = [];
 
     /**
-     * @param CatalogHelper $catalogHelper
+     * @param CurrentProduct $currentProduct
      * @param Category $categoryHelper
      * @param StoreManagerInterface $storeManager
      * @param Json $json
      * @param ModuleManager $moduleManager
      */
     public function __construct(
-        private readonly CatalogHelper         $catalogHelper,
+        private readonly CurrentProduct        $currentProduct,
         private readonly Category              $categoryHelper,
         private readonly StoreManagerInterface $storeManager,
         private readonly Json                  $json,
@@ -114,9 +114,7 @@ class ProductBreadcrumbCategory implements ArgumentInterface
         ];
 
         /** @var Product $product */
-        // Core's current product (set on the product page by the catalog controller);
-        // Webcode_CurrentProduct did the same and is no longer a dependency.
-        if ($product = $this->catalogHelper->getProduct()) {
+        if ($product = $this->currentProduct->get()) {
             if ($currentCategory = $this->getCurrentCategory($product)) {
                 $sortedCategories = [];
 
