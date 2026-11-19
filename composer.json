@@ -1,0 +1,34 @@
+{
+    "name": "webcode/module-breadcrumbs",
+    "version": "1.3.0",
+    "description": "Support 'full' Product Breadcrumbs with Primary Category",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-store": "*",
+        "magento/module-eav": "*"
+    },
+    "authors": [
+        {
+            "name": "Kostadin Bashev",
+            "email": "bashev@webcode.bg",
+            "homepage": "https://webcode.bg/",
+            "role": "Head Magento Developer"
+        }, {
+            "name": "Nayden Mominski",
+            "email": "nayden@webcode.bg",
+            "homepage": "https://webcode.bg/",
+            "role": "Magento Developer"
+        }
+    ],
+    "license": ["OSL-3.0", "AFL-3.0"],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webcode\\Breadcrumbs\\": ""
+        }
+    }
+}
